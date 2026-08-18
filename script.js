@@ -29,3 +29,9 @@ matlabCard?.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key
 document.querySelector('.skill-detail-close')?.addEventListener('click',()=>matlabDetail.close());
 matlabDetail?.addEventListener('click',event=>{if(event.target===matlabDetail)matlabDetail.close()});
 document.querySelector('.matlab-report-preview')?.addEventListener('click',()=>window.open('matlab-error-comparison.png','_blank','noopener'));
+
+const mobileMenuToggle=document.querySelector('.mobile-menu-toggle'),mobileMenu=document.querySelector('.mobile-menu');
+function closeMobileMenu(){mobileMenu?.classList.remove('open');mobileMenuToggle?.setAttribute('aria-expanded','false');mobileMenuToggle?.setAttribute('aria-label','打开导览菜单')}
+mobileMenuToggle?.addEventListener('click',()=>{const willOpen=!mobileMenu.classList.contains('open');mobileMenu.classList.toggle('open',willOpen);mobileMenuToggle.setAttribute('aria-expanded',String(willOpen));mobileMenuToggle.setAttribute('aria-label',willOpen?'关闭导览菜单':'打开导览菜单')});
+mobileMenu?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMobileMenu));
+document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMobileMenu()});
